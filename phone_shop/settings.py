@@ -39,6 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'shop',
+    'search_app',
+    #'cart',
+    #'stripe',
+    #'order',
+    #'vouchers',
+    #3rd party
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +63,8 @@ ROOT_URLCONF = 'phone_shop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [str(BASE_DIR.joinpath('shop','templates')),
+                 str(BASE_DIR.joinpath('search_app','templates'))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -64,6 +72,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'shop.context_processors.menu_links',
+                #'cart.context_processors.counter',
             ],
         },
     },
@@ -137,3 +147,7 @@ MEDIA_ROOT = str(BASE_DIR.joinpath('media'))
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL ='accounts.CustomUser'
+
+
+#CRISPY_TEMPLATE_PACK = 'bootstrap5'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
