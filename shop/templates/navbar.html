@@ -1,10 +1,60 @@
+{% load static %} 
+<div class="navbar">
+  <div class="container">
+      <div class="left">
+        <img src="{% static './images/logo.jpg' %}" alt="Online Cushion Store">
+            <span>Home</span>
+            <span>Iphone</span>
+            <span>Android</span>
+            <span>Windows</span>
+            <span>Classic</span>
+            <span>Popular</span>
+       </div>
+      
+       <div class="right">
+              <div class="navbadge">
+                <a href="{% url 'cart:cart_detail' %}">
+                  <img src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/000000/external-shopping-bag-ecommerce-kiranshastry-lineal-kiranshastry.png"/>
+                    <span class="noti">{{item_count}}</span>
+                  </a>
+            </div>
+            <img src="https://img.icons8.com/ios-glyphs/30/000000/search--v1.png"/>
+           <span>KIDS</span>
+           <img src="https://img.icons8.com/material-outlined/24/000000/appointment-reminders--v2.png"/>
+           <img src="{% static './images/Profile-Photo.jpg' %}" alt="Profile picture">
+           <div class="profile">
+               <ArrowDropDown class="icon"/>
+               <div class="options">
+                   <span>Settings</span>
+                   <span>Logout</span>
+               </div>
+           </div>
+           
+       </div>
+  </div>
+</div>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg bg-light navbar-light mb-5">
-    <!-- Container wrapper -->
-    <div class="container-fluid">
-    
-      <!-- Toggle button -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <nav>
+  <div class="container-fluid">
+
       <button
         class="navbar-toggler"
         type="button"
@@ -17,7 +67,7 @@
         <i class="fas fa-bars"></i>
       </button>
   
-      <!-- Collapsible wrapper -->
+
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -45,7 +95,7 @@
             
 
   
-        <!-- Icons -->
+
         <ul class="navbar-nav d-flex flex-row me-1">
           {% if item_count > 0 %}
           <li class=" me-3 me-lg-0">
@@ -62,7 +112,7 @@
             <a class="nav-link" href="#"><i class="fab fa-twitter"></i></a>
           </li>
         </ul>
-        <!-- Search -->
+   
         <form class="d-flex", action="{% url 'search_app:searchResult' %}" method="get">
           <input
             type="search"
@@ -75,7 +125,6 @@
           <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>
-    </div>
-    <!-- Container wrapper -->
-  </nav>
-  <!-- Navbar -->
+  </div>
+
+</nav>  -->
