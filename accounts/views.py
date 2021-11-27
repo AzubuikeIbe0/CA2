@@ -14,7 +14,7 @@ class SignUpView(CreateView):
 class UserEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Profile
     template_name = 'registration/edit_profile.html'
-    fields = ['id', 'profile_image', 'description', 'fav_author', 'hobbies', 'city', 'phone', 'website']
+    fields = ['id', 'profile_image', 'dob', 'address', 'phone', 'email']
     success_url = reverse_lazy('home')
 
     def get_object(self):

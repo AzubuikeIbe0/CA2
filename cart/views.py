@@ -4,9 +4,8 @@ from .models import Cart, CartItem
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
 import stripe
-#from order.models import Order, OrderItem
-#from vouchers.models import Voucher
-#from vouchers.forms import VoucherApplyForm
+from order.models import Order, OrderItem
+
 from decimal import Decimal
 
 
