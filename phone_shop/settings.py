@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'cart',
     'stripe',
     'order',
-    #'vouchers',
+    'vouchers',
     #3rd party
     'crispy_forms',
 ]
