@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'shop',
     'search_app',
     'cart',
-    #'stripe',
+    'stripe',
     #'order',
     #'vouchers',
     #3rd party
@@ -152,3 +152,13 @@ AUTH_USER_MODEL ='accounts.CustomUser'
 
 #CRISPY_TEMPLATE_PACK = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+# blo_project/setting.py
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home' # new
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+STRIPE_SECRET_KEY = 'sk_test_51JzRHWKUdvuCxoHFxpmAS5Z43ylvcDc48M0Z0LA0JdYONfL64JvcKBvR2JRCzX27f2DjhJdIwUliWk8ixFonBUMp00gK9mbWqT'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51JzRHWKUdvuCxoHF5kS7Uo1XoiUzTLnSNmrB91lornvAKdNb2lXFEzRAxss7HgFjyFkR2MrQAt7k1Amrl3F0ic2v00HE5UCsYK'
