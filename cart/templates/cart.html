@@ -30,8 +30,8 @@ Cart - Perfect Cushion Store
 		<br>
 	</div>
 </div>
-<div class="row mx-auto">
-	<div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+<div class="cart_main_row">
+	<div class="cart_items">
 		<table class="table my_custom_table">
 			<thead class="my_custom_thead">
 				<tr>
@@ -81,16 +81,16 @@ Cart - Perfect Cushion Store
 		</table>
 
 	</div>
-	<div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
-		<table class="table my_custom_table">
-			<thead class="my_custom_thead">
+	<div class="cart_checkout">
+		<table class="cart_table">
+			<thead class="table_head">
 				<tr>
 					<th>
 						Checkout
 					</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody class="table_head">
 				<tr>
 					<td>
 						Please review your shopping cart items before proceeding with the order payment.
@@ -101,8 +101,7 @@ Cart - Perfect Cushion Store
 				<tr class="subtotal">
 					<td>Total</td>
 					<td colspan="4"></td>
-					<td class="num">€{{
-						total|floatformat:"2" }}</td>
+					<td class="num">€{{ total|floatformat:"2" }}</td>
 				</tr>
 				<tr>
 					<td>
@@ -118,8 +117,7 @@ Cart - Perfect Cushion Store
 					<td>Total</td>
 					<td colspan="4"></td>
 					<td class="num">
-						€{{
-						new_total|floatformat:"2" }}
+						€{{ new_total|floatformat:"2" }}
 					</td>
 				</tr>
 				{% else %}
