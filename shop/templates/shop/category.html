@@ -44,10 +44,10 @@
 		</div>
 
 
-		<div class="mx-auto">
+		<div class="#">
 			{% if products.paginator.num_pages > 1 %}
 				<hr>
-				<div class="text-center">
+				<div class="paginate_button text-center">
 					{% for pg in products.paginator.page_range %}
 						<a href="?page={{pg}}" class="btn btn-light btn-sm {% if products.number == pg %}active{% endif %}">{{pg}}</a>
 					{% endfor %}
@@ -57,6 +57,5 @@
         
 		<br>
 	</div>
-	</section>
 {% endblock %}
 
