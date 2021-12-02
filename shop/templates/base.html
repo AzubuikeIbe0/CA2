@@ -81,14 +81,14 @@
   <!-- Navbar -->
 
   <header class="header">
-    <div class="navbar">
+    <nav class="navbar">
       <div class="nav_container">
         <div class="left">
           <img src="{% static './images/logo.jpg' %}" alt="Online Cushion Store">
           <span><a href="{% url 'home' %}" class="nav-link">Home</a></span>
           <span><a href="{% url 'shop:allProdCat' %}" class="nav-link">Shop</a></span>
           <span>Iphone</span>
-          <span>Android</span>
+          <span><a href="#" class="nav-link">Android</a></span>
           <span>Windows</span>
           <span>Classic</span>
           <span>Popular</span>
@@ -115,7 +115,7 @@
           
         </div>
       </div>
-    </div>
+    </nav>
   </header>
   <!-- Navbar -->
 
@@ -135,46 +135,48 @@
 
 
 
-  <footer class=" bg-light">
-    <div class="container p-5">
+  <footer>
+    <div class="container p-5 footer">
       <div class="row">
-        <div class="col-6 col-md">
-          <h5>Services</h5>
+        <div class="col-6 col-md footer_links">
+          <h5>Android</h5>
           <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="#">Weddings</a></li>
-            <li><a class="text-muted" href="#">Tournaments</a></li>
-            <li><a class="text-muted" href="#">Festivals</a></li>
-            <li><a class="text-muted" href="#">Communion</a></li>
-            <li><a class="text-muted" href="#">Personal</a></li>
+            <li><a class="text-muted" href="#">Asus ZenFone 5</a></li>
+            <li><a class="text-muted" href="#">Blackberry Priv</a></li>
+            <li><a class="text-muted" href="#">HTC Dream</a></li>
+            <li><a class="text-muted" href="#">Honor Holly</a></li>
+            <li><a class="text-muted" href="#">Huawei P40</a></li>
+            <li><a class="text-muted" href="#">Lenove Vibe</a></li>
+            <li><a class="text-muted" href="#">Huawei P40</a></li>
           </ul>
         </div>
         <div class="col-6 col-md">
-          <h5>About</h5>
+          <h5>IOS</h5>
           <ul class="list-unstyled text-small">
 
-            <li class="text-muted"><a href="#">Home</a></li>
-            <li class="text-muted"><a href="#">About</a></li>
-            <li cla ss="text-muted"><a href="#">Portfolio</a></li>
-            <li class="text-muted"><a href="#">Contact</a></li>
-            <li class="text-muted"><a href="#">Home</a></li>
-            <li class="text-muted"><a href="#">About</a></li>
-            <li cla ss="text-muted"><a href="#">Portfolio</a></li>
-            <li class="text-muted"><a href="#">Contact</a></li>
+            <li><a class="text-muted" href="#">iphone 13</></li>
+            <li><a class="text-muted" href="#">iPhone 13 Pro Max</></li>
+            <li><a class="text-muted" href="#">iphone 12 Pro</></li>
+            <li><a class="text-muted" href="#">iPhone 11 Mini</></li>
+            <li><a class="text-muted" href="#">iPhone X</></li>
+            <li><a class="text-muted" href="#">iPhone SE</></li>
+            <li><a class="text-muted" href="#">iPhone 8</></li>
+            <li><a class="text-muted" href="#">iPhone 7</></li>
           </ul>
         </div>
         <div class="col-6 col-md">
-          <h5>Services</h5>
+          <h5>Classic Phones</h5>
           <ul class="list-unstyled text-small">
-            <li><a class="text-muted" href="#">Weddings</a></li>
-            <li><a class="text-muted" href="#">Tournaments</a></li>
-            <li><a class="text-muted" href="#">Festivals</a></li>
-            <li><a class="text-muted" href="#">Communion</a></li>
-            <li><a class="text-muted" href="#">Personal</a></li>
-            <li><a class="text-muted" href="#">Weddings</a></li>
-            <li><a class="text-muted" href="#">Tournaments</a></li>
-            <li><a class="text-muted" href="#">Festivals</a></li>
-            <li><a class="text-muted" href="#">Communion</a></li>
-            <li><a class="text-muted" href="#">Personal</a></li>
+            <li><a class="text-muted" href="#">Nokia 3310</a></li>
+            <li><a class="text-muted" href="#">Motorola Razr</a></li>
+            <li><a class="text-muted" href="#">Nokia 111</a></li>
+            <li><a class="text-muted" href="#">Blackberry 8300</a></li>
+            <li><a class="text-muted" href="#">Nokia 900</a></li>
+            <li><a class="text-muted" href="#">Ericsson</a></li>
+            <li><a class="text-muted" href="#">Nokia 6600</a></li>
+            <li><a class="text-muted" href="#">Alkatel</a></li>
+            <li><a class="text-muted" href="#">Samsung</a></li>
+            <li><a class="text-muted" href="#">Trium</a></li>
           </ul>
         </div>
         <div class="col-6 col-md">
@@ -184,10 +186,10 @@
             <li><a class="text-muted" href="#">Sign Up</a></li>
             <li><a class="text-muted" href="#">My Profile</a></li>
             <li><a class="text-muted" href="#">Edit Profile</a></li>
-            <li><a class="text-muted" href="#">Log In</a></li>
-            <li><a class="text-muted" href="#">Sign Up</a></li>
-            <li><a class="text-muted" href="#">My Profile</a></li>
-            <li><a class="text-muted" href="#">Edit Profile</a></li>
+            <li><a class="text-muted" href="#">Wishlist</a></li>
+            <li><a class="text-muted" href="#">Cart</a></li>
+            <li><a class="text-muted" href="#">Orders</a></li>
+            <li><a class="text-muted" href="#">Returns</a></li>
           </ul>
         </div>
         <div class="col-6 col-md">
@@ -195,11 +197,11 @@
           <ul class="list-unstyled text-small">
             {% for category in categories %}
             <li>
-              <a class="text-muted" href="#">{{category.name}}</a>
+              <a class="text-muted" href="#">{{category.category_id}}</a>
             </li>
             {% endfor %}
             <li>
-              <a class="text-muted" href="#">All Locations</a>
+              <a class="text-muted" href="#">All Categories</a>
             </li>
 
           </ul>
@@ -208,7 +210,7 @@
       </div>
       <div class="container-fluid border-top">
 
-        <small class="d-block mt-5 text-muted">&copy; 2021 PhotoGrapher Website | All rights reserved!</small>
+        <small class="d-block mt-5 text-muted">&copy; 2021 PhoneShop Website | All rights reserved!</small>
       </div>
     </div>
   </footer>
@@ -223,8 +225,6 @@
 
   </script>
 
-
-  <!--  Separate Popper and Bootstrap JS -->
   <!--  Separate Popper and Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
 

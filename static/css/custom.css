@@ -8,7 +8,7 @@
 
   body {
        padding-top: 100px;
-       background-color: #fefefe;
+       background-color: #f8f8f6;
      }
 
      main {
@@ -26,27 +26,57 @@
     --main-color: #0b0b0b;
     }
 
+    .header {
+        margin-bottom: 160px;
+    }
+
    .navbar {
-    color: #ee1616;
-    font-size: 14px;
     width: 100%;
     position: fixed;
     top: 0;  
     padding: 0 50px;
     z-index: 1;
     background: linear-gradient(to top, transparent 0%, rgb(0, 0, 0, 0.3) 50%);
-   }                                                                  
-    .nabvar .scrolled {
-        background-color: var(--main-color);
+   }  
+   
+   .navbar a {
+    color: #070000;
+    font-size: 16px;
+   }
+
+   .navbar .right  span a,
+   .navbar .right .fa,
+   .navbar .left  span a {
+               color: #070000;
+           }
+           .navbar span:hover,
+           .navbar a:hover {
+            color: crimson;
+           }
+        
+           .navbar .right  span a:hover,
+           .navbar .right .fa:hover,
+           .navbar .left  span a:hover {
+                       color: crimson;
+                   }
+
+   .header .sticky {
+        background-color: #007bff;
+        color: #fff;
     }
+
+       .sticky .right  span a,
+            .sticky .right .fa,
+           .sticky .left  span a {
+               color: #fff;
+           }
 
      .nav_container  {
         padding:  0 50px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 60px;
-        margin-bottom: 60px;
+        height: 100px;
         width: 100%;
             }
          .nav_container  .left {
@@ -143,7 +173,7 @@
     border-radius: 50%;
     text-align: center;
     font-weight: 400;
-    padding: 2px;
+    padding: 1px;
     left: 20px;
     top: -12px;
 }
@@ -155,7 +185,7 @@
     text-transform: uppercase;
     font-style: italic;
     margin-bottom: 40px;
-
+    height: 100px;
 }
 
 .breadcrumbs span {
@@ -444,7 +474,7 @@
     justify-content: center;
     align-content: center;
     top: -40px;
-    right: 5px;
+    right: 40px;
     width: 120px;
     height: 120px;
     padding: 0 5px;
@@ -513,16 +543,16 @@
 
   /*                            PRODUCT IMAGE                       */
 
-  .product_row {
+  /* .product_row {
     display: grid;
     grid-template-columns: 3fr 1fr;
   
   } 
-
+ */
   .product_card {
       display: flex;
       flex-direction: row;
-      justify-content: space-around;
+      justify-content: stretch;
       align-content: center;
   }
 
@@ -531,13 +561,12 @@
 }
 
   .product_image img{
-      width: 200px;
-     
+      width: 300px;
       margin-right: 50px;
       
   }
 
- .card_body .combtn_row button {
+.combtn_row {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -546,6 +575,9 @@
 
     /*                             CART                       */
 
+    .mycart {
+        height: 100vh;
+    }
 
     .my_custom_table { 
         min-width: 400px; 
@@ -638,24 +670,9 @@
        justify-content: flex-start;
        margin-bottom:  50px;
    }
-  /*                             FOOTER                       */
 
 
-  .footer {
-      margin: 0 200px;
-      bottom: 0;
-      left: 0;
-  }
 
-/****Footer****/ 
-.my_footer { 
-    background-color: #f8f9fa; 
-    height: 60px; 
-   } 
-   .my_footer p { 
-    padding-top: 20px; 
-    font-size: 14px; 
-   } 
 
    ****Category page****/ 
 .my_row_class { 
@@ -906,110 +923,62 @@
    */
   
 
-/*=====================STAR RATINGS ==========================================*/
+
+            /*                             FOOTER                       */
 
 
-   .rating {
-    width: 300 px;
-    margin: 0 auto 1 em;
-    font - size: 45 px;
-    overflow: hidden;
- }
- .rating input {
-    float: right;
-    opacity: 0;
-    position: absolute;
- }
- .rating a,
- .rating label {
-    float: right;
-    color: #aaa;
-    text - decoration: none; -
-    webkit - transition: color .4 s; -
-    moz - transition: color .4 s; -
-    o - transition: color .4 s;
-    transition: color .4 s;
- }
- .rating label: hover~label,
-    .rating input: focus~label,
-    .rating label: hover,
-    .rating a: hover,
-    .rating a: hover~a,
-    .rating a: focus,
-    .rating a: focus~a {
-       color: orange;
-       cursor: pointer;
-    }
-    .rating2 {
-       direction: rtl;
-    }
-    .rating2 a {
-       float: none
-    }
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
- <div class="rating rating2">
-    <a href="#5" title="Give 5 stars" data-value="5">★</a>
-    <a href="#4" title="Give 4 stars" data-value="4">★</a>
-    <a href="#3" title="Give 3 stars" data-value="3">★</a>
-    <a href="#2" title="Give 2 stars" data-value="2">★</a>
-    <a href="#1" title="Give 1 star" data-value="1">★</a>
- </div>
-       .star - ratings - css {
-             unicode - bidi: bidi - override;
-             color: #c5c5c5;
-             font - size: 25 px;
-             height: 25 px;
-             width: 100 px;
-             margin: 0 auto;
-             position: relative;
-             padding: 0;
-             text - shadow: 0 px 1 px 0 #a2a2a2;
-          }
- 
-          .star - ratings - css - top {
-             color: #e7711b;
-             padding: 0;
-             position: absolute;
-             z - index: 1;
-             display: block;
-             top: 0;
-             left: 0;
-             overflow: hidden;
-          }
- 
-          .star - ratings - css - bottom {
-             padding: 0;
-             display: block;
-             z - index: 0;
-          }
- 
-          .star - ratings - sprite {
-             background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat - x;
-             font - size: 0;
-             height: 21 px;
-             line - height: 0;
-             overflow: hidden;
-             text - indent: -999 em;
-             width: 110 px;
-             margin: 0 auto;
-          }
- 
-          .star - ratings - sprite - rating {
-             background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat - x;
-             background - position: 0 100 % ;
-             float: left;
-             height: 21 px;
-             display: block;
-          }
+footer {
+    padding: 0 200px;
+    bottom: 0;
+    left: 0;
+    background-color: #dedfe0 !important;
+}
+
+.footer a {
+    font-family: 'gt-walsheim-light', sans-serif;
+    padding-top: .1em;
+    padding-bottom: .1em;
+}
+
+.text-muted,
+.footer_links ul li a{
+    font-size: 14px;
+    list-style: none;
+    text-decoration: none;
+}
+
 
    /*=====================RESPONSIVE DESIGN ==========================================*/
 
-   @media screen and (max-width: 1600px) {
-    .product_row{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-
+   @media screen and (max-width: 768px) {
+    .product_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        padding: 0;
+        
     }
+
+    .product_card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-content: center;
+    }
+
+.tab {
+    margin: 0;
+}
+
+.pcont .col-md-8,
+.pcont .col-sm-12 {
+    margin: 0;
+}
+
+.aside .row {
+    margin: 0;
+}
    }
  
 

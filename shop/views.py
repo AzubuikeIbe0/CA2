@@ -44,3 +44,18 @@ class ProdDetail(DetailView):
             raise e
         return render(request, "shop/product.html",{'product':product})
 
+
+
+def android(request):
+    categorys = Category.objects.all()
+
+    context = {
+        'categorys': categorys,
+    }
+    return render(request, 'shop/android.html', context)
+
+
+
+
+
+

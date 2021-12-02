@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+    {% block content %}
+        {% for category in categorys %}
+        <h1>{{ category.android }}</h1>
+            {% for product in category.product_set.all %}
+                {{ product.name }}
+                {{ product.price }}
+            {% endfor %}
+        {% endfor %}
+    
+    {% endblock %}
