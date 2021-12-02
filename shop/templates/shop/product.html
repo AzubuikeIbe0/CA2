@@ -1,38 +1,274 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
+{% load comments %}
+{% load ratings %}
 {% block metadescription %}
 {{ product.description|truncatewords:155 }}
 {% endblock %}
 {% block title %}
-{{ product.name }} - Perfect Cushion Store
+{{ product.name }} - The Mobile Phone Shop
 {% endblock %}
 {% block content %}
-<section class="row">
-  <div class="main">
-    <p><a href="{% url 'shop:allProdCat' %}">Home</a> | <a href="{{ product.category.get_url }}">{{product.category}}</a> | {{product.name}}</p>
+<div class="product_container">
+  <div class="breadcrumbs">
+    <p><a href="{% url 'shop:allProdCat' %}">Shop</a><span>/</span>
+      <a href="{{ product.category.get_url }}">{{product.category}}</a><span>/</span>{{product.name}}
+    </p>
   </div>
-  <div class="product_container zoomin_container">
-    <br>
-    <div class="product_row">
-     
+  <div class="product_row">
+
+    <div class="pcont">
+      <div class="product_card">
+
         <div class="product_image">
           <img id="xzoom" src="{{product.image.url}}" alt="{{product.name}}">
+          <div class="discount bg-danger">
+            <h1>{{product.voucher.discount}}<span>%</span></h1>
+          </div>
         </div>
+
+        <div class="#">
+          <div class="product_desc">
+            <small class="product_category">{{product.category}}</small>
+            <h1 class="product_name">{{product.name}}</h1>
+            <hr>
+            <p>{% ratings product %}</p>
+            <p>€{{product.price}}</p>
+            <div class="btn-group  mt-2">
+              <a href="{{ product.category.get_url }}" type="button"
+                class=" btn-sm btn-outline-secondary">{{product.stock}}</a>
+              <a href="{{ product.category.get_url }}" type="button"
+                class=" btn-sm btn-outline-secondary">{{product.name}}</a>
+              <a href="{{ product.category.get_url }}" type="button" class=" btn-sm btn-outline-secondary">In Stock</a>
+            </div>
+            <hr>
+            <p class="my_title">Product Description</p>
+            <p class="text-justify my_prod_text">{{product.description}}</p>
+            <div class="mx-auto mb-3">
+              <a href="{% url 'shop:allProdCat' %}" class="btn btn-primary btn-block text-white">Continue
+                Shopping</a>
+            </div>
+
+            <button type="submit" class="stripe-button-el bg-warning mb-3" style="visibility: visible;"><a
+                href="https://checkout.stripe.com/checkout.js"></a><span style="display: block; min-height: 30px;">
+                Checkout with Stripe</span></button>
+
+            <button type="submit" class="bg-danger paypal_button" style="visibility: visible;"><span
+                style="display: block; min-height: 30px;">Checkout with PayPal</span></button>
+
+          </div>
+        </div>
+
+      </div>
+     
+
+      <div class="tab m-5">
+
+        <ul class="nav nav-tabs  nav-justified my-5" id="ex1" role="tablist">
+          <li class="active nav-item" role="presentation"><a class="active nav-link" data-toggle="tab" role="tab"
+            aria-controls="ex3-tabs-2" aria-selected="true" href="#comments">Product Comments</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link" id="ex3-tab-2" data-toggle="tab" role="tab"
+            aria-controls="ex3-tabs-2" aria-selected="false" href="#reviews">Product Reviews</a></li>
+          <!-- <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+          <li><a data-toggle="tab" href="#menu3">Menu 3</a></li> -->
+        </ul>
       
-      <div class="col-12 col-sm-12 col-md-12 col-lg-6">
-        <div>
-          <h1 class="my_prod_title">{{product.name}}</h1>
-          <p>£{{product.price}}</p>
-          <p class="my_title">Product Description</p>
-          <p class="text-justify my_prod_text">{{product.description}}</p>
-          {% if product.stock == 0%}
-          <p class="tex-justify my_prod_text"><b>Out of Stock</b></p>
-          {% else %}
-          <a class="btn btn-secondary" href="{% url 'cart:add_cart' product.id %} ">Add to Cart</a>
-          {% endif %}
+        <div class="tab-content">
+          <div id="comments" class="tab-pane fade in active">
+            <div class="tab-pane ">
+              <p>
+                {% get_comment_count for product as comment_count %}
+                <p>This product has {{ comment_count }} comments.</p>
+              </p>
+    
+              
+              <p>
+                {% get_comment_list for product as comment_list %}
+                {% for comment in comment_list %}
+              <div class="card p-4 my-3 bg-light rounded">
+                <div class="comments" style="padding: 10px;">
+                  <p class="font-weight-bold">
+                    {{ comment.user_name }}
+                    <span class=" text-muted font-weight-normal">
+                      {{ comment.submit_date }}
+                    </span>
+                  </p>
+                  {{ comment.comment | linebreaks }}
+                </div>
+              </div>
+    
+              {% endfor %}
+        
+              <div class="card-body">
+                {% get_comment_form for product as form %}
+                {% if new_comment %}
+                <div class="alert alert-success" role="alert">
+                  Your comment is awaiting moderation
+                </div>
+                {% else %}
+                <h3>Leave a comment</h3>
+                {% get_comment_form for product as form %}
+                <form action="{% comment_form_target %}" method="post">
+                  {% csrf_token %}
+                  {{ form | crispy }}
+                  <div class="row combtn_row"><button type="submit" name="submit" value="Post"
+                      class="btn btn-primary  btn-lg col-md-5 ">Submit</button>
+                    <button type="submit" name="preview" value="Preview"
+                      class="btn btn-outline-secondary  btn-lg col-md-5">Preview</button>
+                  </div>
+                  <input type="hidden" name="next" value="{% url 'shop:allProdCat' %}" />
+    
+                </form>
+                {% endif %}
+              </div>
+              </p>
+            </div>
+          </div>
+          <div id="reviews" class="tab-pane fade">
+            <h3>Reviews</h3>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </div>
+         <!--  <div id="menu2" class="tab-pane fade">
+            <h3>Menu 2</h3>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+          </div>
+          <div id="menu3" class="tab-pane fade">
+            <h3>Menu 3</h3>
+            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+          </div> -->
+        </div>
+
+
+        
+      </div>
+
+        
+        
+
+
+  
+      
+    </div>
+
+    <aside class="aside">
+      <div class="input-group">
+        <div id="search-autocomplete" class="form-outline">
+          <input type="search" id="form1" class="form-control" />
+          <label class="form-label" for="form1">Search</label>
+        </div>
+        <button type="button" class="btn btn-primary">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+      <div class="p-4 mb-3 bg-light rounded">
+        <h4 class="font-italic">About</h4>
+        <p class="mb-0">Saw you downtown singing the Blues. Watch you circle the drain. Why don't you let me stop by?
+          Heavy is the head that <em>wears the crown</em>. Yes, we make angels cry, raining down on earth from up above.
+        </p>
+      </div>
+
+      <div class="checkout p-4 mb-3 bg-white rounded">
+        <table class="table my_custom_table">
+          <thead class="my_custom_thead">
+            <tr>
+              <th colspan="5">
+                Your items
+              </th>
+            </tr>
+
+          </thead>
+          <tbody>
+            {% for cart_item in cart_items %}
+            <tr>
+              <td>
+                <a href="{{cart_item.product.get_url}}"><img src="{{cart_item.product.image.url}}" alt=""
+                    class="float-left rounded custom_image"></a>
+              </td>
+              <td class="text-left">
+                {{cart_item.product.name}}
+                <br>
+                Unit Price: £{{cart_item.product.price}}
+                <br>
+                Qty: {{cart_item.quantity}} x £{{cart_item.product.price}}
+              </td>
+              <td>
+                £{{cart_item.sub_total}}
+              </td>
+              {% if cart_item.quantity < cart_item.product.stock %} <td>
+                <a href="{% url 'cart:add_cart' cart_item.product.id %} " class="custom_a"><i
+                    class="fas fa-plus-circle custom_icon"></i></a>&nbsp;
+                <a href="{% url 'cart:cart_remove' cart_item.product.id %}" class="custom_a"><i
+                    class="fas fa-minus-circle custom_icon"></i></a>&nbsp;
+                <a href="{% url 'cart:full_remove' cart_item.product.id %}" class="custom_icon"><i
+                    class="fas fa-trash-alt custom_icon"></i></a>
+                </td>
+                {% else %}
+                <td>
+                  &nbsp;<a href="{% url 'cart:cart_remove' cart_item.product.id %}" class="custom_a"><i
+                      class="fas fa-minus-circle custom_icon"></i></a>&nbsp;
+                  <a href="{% url 'cart:full_remove' cart_item.product.id %}" class="custom_icon"><i
+                      class="fas fa-trash-alt custom_icon"></i></a>
+                </td>
+                <td></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <a href="{{ product.category.get_url }}" type="button" class="btn stripe-button-el bg-light mb-3">Only
+          <span>{{product.stock}}</span> left in stock</a>
+        {% if product.stock == 0%}
+        <p class="tex-justify my_prod_text"><b>Out of Stock</b></p>
+        {% else %}
+        <a class="btn bg-danger paypal_button" href="{% url 'cart:add_cart' product.id %} ">Add to Cart</a>
+        {% endif %}
+      </div>
+
+      <div class="shipping checkout p-4 mb-3 bg-white rounded">
+        <div class="method">
+          <div class="image">
+            <img src="https://img.icons8.com/ios/100/000000/in-transit.png" />
+          </div>
+          <div class="text">
+            <p>
+              UPS Standard to Austria 3 working days at € 8.80/case
+              Free shipping on orders over €200
+            </p>
+          </div>
+        </div>
+        <div class="method">
+          <div class="image">
+            <img src="https://img.icons8.com/color/96/000000/ups-airlines.png" />
+          </div>
+          <div class="text">
+            <p> UPS Express Shipping option available at the checkout
+            </p>
+          </div>
+        </div>
+        <div class="method">
+          <div class="image">
+            <img
+              src="https://img.icons8.com/external-outline-satawat-anukul/64/000000/external-air-travel-outline-satawat-anukul-2.png" />
+          </div>
+          <div class="text">
+            <p>
+              New Customers, enter NEWCUST8J to get €10 off with the minimum wine order of €100
+            </p>
+          </div>
+        </div>
+        <div class="method">
+          <div class="image">
+            <img src="https://img.icons8.com/ios/100/000000/gift.png" />
+          </div>
+          <div class="text">
+            <p>Add gift options at the checkout
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+
+    </aside><!-- /.blog-sidebar -->
   </div>
-</section>
+</div>
 {% endblock %}

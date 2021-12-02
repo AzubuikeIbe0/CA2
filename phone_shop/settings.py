@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'accounts',
     'shop',
     'search_app',
@@ -44,6 +45,9 @@ INSTALLED_APPS = [
     'stripe',
     'order',
     'vouchers',
+    'pages',
+    'django_comments',
+    'star_ratings',
     #3rd party
     'crispy_forms',
 ]
@@ -64,6 +68,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [str(BASE_DIR.joinpath('shop','templates')),
+                 str(BASE_DIR.joinpath('home','templates')),
                  str(BASE_DIR.joinpath('search_app','templates')),
                  str(BASE_DIR.joinpath('cart','templates')),
                  str(BASE_DIR.joinpath('accounts','templates'))],
@@ -143,6 +148,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = str(BASE_DIR.joinpath('media'))
 
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -151,8 +157,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL ='accounts.CustomUser'
 
 
+#CRISPY_TEMPLATE_PACK = 'uni_form'
 #CRISPY_TEMPLATE_PACK = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+SITE_ID=1
 
 
 # blo_project/setting.py

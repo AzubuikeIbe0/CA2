@@ -1,100 +1,254 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="description" content="{% block metadescription %}{% endblock %}">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="icon" href="logo.jpg" type="image/png" sizes="16x16"> 
+  <link rel="icon" href="logo.jpg" type="image/png" sizes="16x16">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
   <link rel="stylesheet" href="{% static 'css/custom.css' %}">
   <title>{% block title %}{% endblock %}</title>
   <script>
     function magnify(imgID, zoom) {
       var img, glass, w, h, bw;
       img = document.getElementById(imgID);
-    
+
       glass = document.createElement("DIV");
       glass.setAttribute("class", "magnifier_glass");
-     
+
       img.parentElement.insertBefore(glass, img);
-      
+
       glass.style.backgroundImage = "url('" + img.src + "')";
       glass.style.backgroundRepeat = "no-repeat";
       glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
       bw = 3;
       w = glass.offsetWidth / 2;
       h = glass.offsetHeight / 2;
-      
+
       glass.addEventListener("mousemove", moveMagnifier);
       img.addEventListener("mousemove", moveMagnifier);
-     
+
       glass.addEventListener("touchmove", moveMagnifier);
       img.addEventListener("touchmove", moveMagnifier);
       function moveMagnifier(e) {
-      var pos, x, y;
-     
-      e.preventDefault();
-    
-      pos = getCursorPos(e);
-      x = pos.x;
-      y = pos.y;
-     
-      if (x > img.width - (w / zoom)) {x = img.width - (w / zoom);}
-      if (x < w / zoom) {x = w / zoom;}
-      if (y > img.height - (h / zoom)) {y = img.height - (h / zoom);}
-      if (y < h / zoom) {y = h / zoom;}
-      
-      glass.style.left = (x - w) + "px";
-      glass.style.top = (y - h) + "px";
-    
-      glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
+        var pos, x, y;
+
+        e.preventDefault();
+
+        pos = getCursorPos(e);
+        x = pos.x;
+        y = pos.y;
+
+        if (x > img.width - (w / zoom)) { x = img.width - (w / zoom); }
+        if (x < w / zoom) { x = w / zoom; }
+        if (y > img.height - (h / zoom)) { y = img.height - (h / zoom); }
+        if (y < h / zoom) { y = h / zoom; }
+
+        glass.style.left = (x - w) + "px";
+        glass.style.top = (y - h) + "px";
+
+        glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
       }
       function getCursorPos(e) {
-      var a, x = 0, y = 0;
-      e = e || window.event;
-   
-      a = img.getBoundingClientRect();
-     
-      x = e.pageX - a.left;
-      y = e.pageY - a.top;
-      
-      x = x - window.pageXOffset;
-      y = y - window.pageYOffset;
-      return {x : x, y : y};
+        var a, x = 0, y = 0;
+        e = e || window.event;
+
+        a = img.getBoundingClientRect();
+
+        x = e.pageX - a.left;
+        y = e.pageY - a.top;
+
+        x = x - window.pageXOffset;
+        y = y - window.pageYOffset;
+        return { x: x, y: y };
       }
-      }
-</script>
+    }
+  </script>
 </head>
 
+
 <body>
-  {% include 'header1.html' %}
 
-  <div class="container_main">
 
-    <div class="base_row">
+  <!-- Navbar -->
+
+  <header class="header">
+    <div class="navbar">
+      <div class="nav_container">
+        <div class="left">
+          <img src="{% static './images/logo.jpg' %}" alt="Online Cushion Store">
+          <span><a href="{% url 'home' %}" class="nav-link">Home</a></span>
+          <span><a href="{% url 'shop:allProdCat' %}" class="nav-link">Shop</a></span>
+          <span>Iphone</span>
+          <span>Android</span>
+          <span>Windows</span>
+          <span>Classic</span>
+          <span>Popular</span>
+        </div>
+
+        <div class="right">
+          <div class="navbadge">
+            <a href="{% url 'cart:cart_detail' %}">
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+              <span class="noti">{{item_count}}</span>
+            </a>
+          </div>
+          <!--  <span>KIDS</span> -->
+          <i class="fa fa-binoculars" aria-hidden="true"></i>
+
+          <div class="profile">
+            <img src="{% static './images/Profile-Photo.jpg' %}" alt="Profile picture">
+            <ArrowDropDown class="icon" />
+            <div class="options">
+              <span><a href="{% url 'show_profile' user.profile.pk %}" class="dropdown-item">View Profile</a></span>
+              <span><a href="{% url 'edit_profile' user.profile.pk %}" class="dropdown-item">Edit
+                  Profile</a></span>
+              <span><a href="{% url 'password_change'%}" class="dropdown-item">Change Password</a></span>
+              <span><a href="{% url 'logout' %}" class="dropdown-item">Logout</a></span>
+            </div>
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- Navbar -->
+
+
+
+
+
+  <div class="container-fluid">
+
+    <div class="#">
 
       {% block content %}
-      {% endblock %}
-  
-      
-      {% include 'footer.html' %}
+      {% endblock content %}
+
     </div>
-</div>
+  </div>
 
 
 
+  <footer class=" bg-light">
+    <div class="container p-5">
+      <div class="row">
+        <div class="col-6 col-md">
+          <h5>Services</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Weddings</a></li>
+            <li><a class="text-muted" href="#">Tournaments</a></li>
+            <li><a class="text-muted" href="#">Festivals</a></li>
+            <li><a class="text-muted" href="#">Communion</a></li>
+            <li><a class="text-muted" href="#">Personal</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>About</h5>
+          <ul class="list-unstyled text-small">
+
+            <li class="text-muted"><a href="#">Home</a></li>
+            <li class="text-muted"><a href="#">About</a></li>
+            <li cla ss="text-muted"><a href="#">Portfolio</a></li>
+            <li class="text-muted"><a href="#">Contact</a></li>
+            <li class="text-muted"><a href="#">Home</a></li>
+            <li class="text-muted"><a href="#">About</a></li>
+            <li cla ss="text-muted"><a href="#">Portfolio</a></li>
+            <li class="text-muted"><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Services</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Weddings</a></li>
+            <li><a class="text-muted" href="#">Tournaments</a></li>
+            <li><a class="text-muted" href="#">Festivals</a></li>
+            <li><a class="text-muted" href="#">Communion</a></li>
+            <li><a class="text-muted" href="#">Personal</a></li>
+            <li><a class="text-muted" href="#">Weddings</a></li>
+            <li><a class="text-muted" href="#">Tournaments</a></li>
+            <li><a class="text-muted" href="#">Festivals</a></li>
+            <li><a class="text-muted" href="#">Communion</a></li>
+            <li><a class="text-muted" href="#">Personal</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>User Menu</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Log In</a></li>
+            <li><a class="text-muted" href="#">Sign Up</a></li>
+            <li><a class="text-muted" href="#">My Profile</a></li>
+            <li><a class="text-muted" href="#">Edit Profile</a></li>
+            <li><a class="text-muted" href="#">Log In</a></li>
+            <li><a class="text-muted" href="#">Sign Up</a></li>
+            <li><a class="text-muted" href="#">My Profile</a></li>
+            <li><a class="text-muted" href="#">Edit Profile</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Categories</h5>
+          <ul class="list-unstyled text-small">
+            {% for category in categories %}
+            <li>
+              <a class="text-muted" href="#">{{category.name}}</a>
+            </li>
+            {% endfor %}
+            <li>
+              <a class="text-muted" href="#">All Locations</a>
+            </li>
+
+          </ul>
+        </div>
+
+      </div>
+      <div class="container-fluid border-top">
+
+        <small class="d-block mt-5 text-muted">&copy; 2021 PhotoGrapher Website | All rights reserved!</small>
+      </div>
+    </div>
+  </footer>
 
 
-     <!--  Separate Popper and Bootstrap JS -->
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    window.addEventListener('scroll', function () {
+      const nav = document.querySelector('nav');
+      nav.classList.toggle("sticky", window.scrollY > 0);
 
-     <script src="zoom.js"></script>
-     <script>
-         magnify("xzoom", 3);
-     </script>
+    });
+
+  </script>
+
+
+  <!--  Separate Popper and Bootstrap JS -->
+  <!--  Separate Popper and Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="zoom.js"></script>
+  <script>
+    magnify("xzoom", 3);
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
 </body>
 
 </html>

@@ -1,11 +1,18 @@
-import uuid
+
+#from django.contrib.auth import get_user_model
 from django.db import models
+from django.shortcuts import render, get_object_or_404
+#from .forms import CommentForm
+from django.db import models
+from django.db.models.fields import IntegerField
 from django.urls import reverse
+#from phone_shop.settings import TIME_ZONE
+
+from vouchers.models import Voucher
 
 class Category(models.Model):
-    id = models.UUIDField(
+    id = models.IntegerField(
         primary_key=True,
-        default=uuid.uuid4,
         editable=False
     )
     name = models.CharField(default = None, max_length=250, unique=True)
@@ -26,18 +33,18 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    id = models.UUIDField(
+    id = models.IntegerField(
         primary_key=True,
-        default=uuid.uuid4,
         editable=False
     )
     
-    name = models.CharField(max_length=250,unique=True)
+    name = models.TextField(max_length=25,unique=True)
     description = models.TextField(blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to='product', blank=True)
     stock = models.IntegerField()
+    voucher = models.ForeignKey(Voucher, default=1, on_delete=models.CASCADE)
     available = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     updated = models.DateTimeField(auto_now=True, blank=True, null=True)

@@ -1,13 +1,14 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
-from django.views.generic import CreateView, UpdateView, DetailView
+from django.views.generic import  UpdateView, DetailView
 from .forms import CustomUserCreationForm
 from .models import CustomUser
 from django.contrib.auth.models import Group
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from .models import Profile
+
 
 # Create your views here.
 
@@ -54,7 +55,7 @@ def SignoutView(request):
 class UserEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Profile
     template_name = 'registration/edit_profile.html'
-    fields = ['id', 'profile_image', 'dob', 'address', 'phone', 'email']
+    fields = ['user', 'profile_image', 'dob', 'address', 'phone', 'email']
     success_url = reverse_lazy('home')
 
     def get_object(self):
@@ -73,4 +74,8 @@ class ProfilePageView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
 
     def test_func(self):
         return self.request.user.profile
+
+
+
+
 
