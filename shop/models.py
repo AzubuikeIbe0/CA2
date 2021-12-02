@@ -13,6 +13,7 @@ from vouchers.models import Voucher
 class Category(models.Model):
     id = models.IntegerField(
         primary_key=True,
+        default=1,
         editable=False
     )
     name = models.CharField(default = None, max_length=250, unique=True)
@@ -35,6 +36,7 @@ class Category(models.Model):
 class Product(models.Model):
     id = models.IntegerField(
         primary_key=True,
+        default=1,
         editable=False
     )
     

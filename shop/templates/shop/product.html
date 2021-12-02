@@ -33,7 +33,7 @@
             <small class="product_category">{{product.category}}</small>
             <h1 class="product_name">{{product.name}}</h1>
             <hr>
-            <p>{% ratings product %}</p>
+            
             <p>€{{product.price}}</p>
             <div class="btn-group  mt-2">
               <a href="{{ product.category.get_url }}" type="button"
@@ -126,8 +126,11 @@
             </div>
           </div>
           <div id="reviews" class="tab-pane fade">
-            <h3>Reviews</h3>
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <h3>Review this product</h3>
+            <hr>
+            <p>{% ratings product %}</p>
+           
+            
           </div>
          <!--  <div id="menu2" class="tab-pane fade">
             <h3>Menu 2</h3>
@@ -152,14 +155,18 @@
     </div>
 
     <aside class="aside">
-      <div class="input-group">
-        <div id="search-autocomplete" class="form-outline">
-          <input type="search" id="form1" class="form-control" />
-          <label class="form-label" for="form1">Search</label>
-        </div>
-        <button type="button" class="btn btn-primary">
-          <i class="fas fa-search"></i>
-        </button>
+      <div class="row ">
+        <form class="d-flex mx-auto my-auto" action="{% url 'search_app:searchResult' %}" method="get">
+          <input
+            type="search"
+            class="form-control"
+            me-2
+            placeholder="Search"
+            aria-label="Search"
+            name="q"
+          />
+          <button class="btnSearch btn-primary  my-sm-0" type="submit">Search</button>
+          </form>
       </div>
       <div class="p-4 mb-3 bg-light rounded">
         <h4 class="font-italic">About</h4>
