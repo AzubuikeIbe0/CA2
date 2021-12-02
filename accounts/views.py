@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
-from django.views.generic import  UpdateView, DetailView
+from django.views.generic import CreateView, UpdateView, DetailView
 from .forms import CustomUserCreationForm
 from .models import CustomUser
 from django.contrib.auth.models import Group
@@ -64,7 +64,7 @@ class UserEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def test_func(self):
         return self.request.user.profile
 
-class ProfilePageView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
+class ProfilePageView(DetailView, LoginRequiredMixin, UserPassesTestMixin):
     model = Profile
     template_name = 'registration/user_profile.html'
     success_url = reverse_lazy('home')

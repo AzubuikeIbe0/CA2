@@ -108,11 +108,7 @@
             <img src="{% static './images/Profile-Photo.jpg' %}" alt="Profile picture">
             <ArrowDropDown class="icon" />
             <div class="options">
-              <span><a href="{% url 'show_profile' user.profile.pk %}" class="dropdown-item">View Profile</a></span>
-              <span><a href="{% url 'edit_profile' user.profile.pk %}" class="dropdown-item">Edit
-                  Profile</a></span>
-              <span><a href="{% url 'password_change'%}" class="dropdown-item">Change Password</a></span>
-              <span><a href="{% url 'logout' %}" class="dropdown-item">Logout</a></span>
+              
             </div>
           </div>
           

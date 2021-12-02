@@ -5,6 +5,6 @@ app_name = 'shop'
 
 urlpatterns = [
     path('', ProdCat.as_view(), name='allProdCat'),
-    path('<uuid:category_id>/', ProdCat.as_view(), name='product_by_category'),
-    path('<uuid:category_id><uuid:product_id>/', ProdDetail.as_view(), name='prod_detail'),
+    path('<int:category_id>/', ProdCat.as_view(), name='product_by_category'),
+    path('<int:category_id><int:product_id>/', ProdDetail.as_view(), name='prod_detail'),
 ]
