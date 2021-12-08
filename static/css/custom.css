@@ -65,7 +65,7 @@
         color: #fff;
     }
 
-       .sticky .right  span a,
+
             .sticky .right .fa,
            .sticky .left  span a {
                color: #fff;
@@ -121,19 +121,26 @@
             
 .profile  .options {
                     display: none;
-                    background-color: var(--main-color);
+                    background-color: #ece4e4;
                     border-radius: 5px;
-                    padding: 10px 15px;
+                    padding: 10px 35px 10px 15px;
                     border: 1px solid #ffffff;
-                    color: #fff;
+                    color: #1b1515;
                 }
+
+ 
+.profile  .options span a{
+    margin: 2px 0;
+    padding: 0;
+    font-size: 13px;
+    font-weight: 500;
+}
 
                 .dropdown-item {
                     display: block;
                     width: 100px;
                     clear: both;
                     font-weight: 300;
-                    color: #fff;
                     text-align: inherit;
                     white-space: nowrap;
                     background-color: transparent;
@@ -931,7 +938,7 @@ footer {
     padding: 0 200px;
     bottom: 0;
     left: 0;
-    background-color: #dedfe0 !important;
+    background-color: #0062cd !important;
 }
 
 .footer a {
@@ -946,6 +953,10 @@ footer {
     list-style: none;
     text-decoration: none;
 }
+
+.text-muted {
+    color: #f6f9fc !important;
+  }
 
 
    /*=====================RESPONSIVE DESIGN ==========================================*/

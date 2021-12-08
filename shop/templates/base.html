@@ -84,10 +84,10 @@
     <nav class="navbar">
       <div class="nav_container">
         <div class="left">
-          <img src="{% static './images/logo.jpg' %}" alt="Online Cushion Store">
+          <img src="{% static './images/logo.jpg' %}" alt="Phone Shop">
           <span><a href="{% url 'home' %}" class="nav-link">Home</a></span>
           <span><a href="{% url 'shop:allProdCat' %}" class="nav-link">Shop</a></span>
-          <span>Iphone</span>
+          <span>iPhone</span>
           <span><a href="#" class="nav-link">Android</a></span>
           <span>Windows</span>
           <span>Classic</span>
@@ -108,7 +108,15 @@
             <img src="{% static './images/Profile-Photo.jpg' %}" alt="Profile picture">
             <ArrowDropDown class="icon" />
             <div class="options">
-              
+              {% if user.is_authenticated %}
+              <span><a href="{% url 'show_profile' user.profile.pk %}" class="dropdown-item">View Profile</a></span>
+              <span><a href="{% url 'edit_profile' user.profile.pk %}" class="dropdown-item">Edit Profile</a></span>
+              <span><a href="{% url 'password_change'%}" class="dropdown-item">Change Password</a></span>
+              <span><a href="{% url 'logout' %}" class="dropdown-item">Logout</a></span>
+              {% else %}
+              <span><a href="{% url 'login' %}" class="dropdown-item">Login</a></span>
+              <span><a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a></span>
+              {% endif %}
             </div>
           </div>
           
@@ -138,7 +146,7 @@
   <footer>
     <div class="container p-5 footer">
       <div class="row">
-        <div class="col-6 col-md footer_links">
+        <div class="col-6 col-md">
           <h5>Android</h5>
           <ul class="list-unstyled text-small">
             <li><a class="text-muted" href="#">Asus ZenFone 5</a></li>
@@ -154,14 +162,14 @@
           <h5>IOS</h5>
           <ul class="list-unstyled text-small">
 
-            <li><a class="text-muted" href="#">iphone 13</></li>
-            <li><a class="text-muted" href="#">iPhone 13 Pro Max</></li>
-            <li><a class="text-muted" href="#">iphone 12 Pro</></li>
-            <li><a class="text-muted" href="#">iPhone 11 Mini</></li>
-            <li><a class="text-muted" href="#">iPhone X</></li>
-            <li><a class="text-muted" href="#">iPhone SE</></li>
-            <li><a class="text-muted" href="#">iPhone 8</></li>
-            <li><a class="text-muted" href="#">iPhone 7</></li>
+            <li><a class="text-muted" href="#">iphone 13</a></li>
+            <li><a class="text-muted" href="#">iPhone 13 Pro Max</a></li>
+            <li><a class="text-muted" href="#">iphone 12 Pro</a></li>
+            <li><a class="text-muted" href="#">iPhone 11 Mini</a></li>
+            <li><a class="text-muted" href="#">iPhone X</a></li>
+            <li><a class="text-muted" href="#">iPhone SE</a></li>
+            <li><a class="text-muted" href="#">iPhone 8</a></li>
+            <li><a class="text-muted" href="#">iPhone 7</a></li>
           </ul>
         </div>
         <div class="col-6 col-md">
@@ -197,7 +205,7 @@
           <ul class="list-unstyled text-small">
             {% for category in categories %}
             <li>
-              <a class="text-muted" href="#">{{category.category_id}}</a>
+              <a class="text-muted" href="#">{{category.name}}</a>
             </li>
             {% endfor %}
             <li>
