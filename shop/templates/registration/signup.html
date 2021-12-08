@@ -1,21 +1,12 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
+{% extends 'base.html' %} 
+{% block content %} 
+{% load crispy_forms_tags %}
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/cover.css' %}">
-</head>
 
-<body>
-    {% load crispy_forms_tags %}
-    <main role="main" class="inner cover col-md-4">
+
+<main role="main" class="container-fluid m-5">
+  <div class="row">
+    <div class="col-md-7 blog-main mx-5 ">
         <form method="post">
             {% csrf_token %}
             {{ form|crispy }}
@@ -24,10 +15,38 @@
                 <p>Already registered? <a href="{% url 'login' %}">Log in</a></p>
             </div>
         </form>
-    </main>
+    </div>
+    <!-- /.blog-main -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <aside class="col-md-3 blog-sidebar border-left mx-5">
+      <div class="p-4 mb-3 bg-light rounded">
+        <div class="">
+          <h4 class="font-italic">{{user.profile.phone}}</h4>
+        </div>
+      </div>
 
-</body>
+      <div class="p-4">
+        <h4 class="font-italic">Archives</h4>
+        <ol class="list-unstyled mb-0">
+          <li><a href="#">March 2014</a></li>
+          <li><a href="#">February 2014</a></li>
+          <li><a href="#">January 2014</a></li>
+          <li><a href="#">December 2013</a></li>
+          <li><a href="#">November 2013</a></li>
+          <li><a href="#">October 2013</a></li>
+          <li><a href="#">September 2013</a></li>
+          <li><a href="#">August 2013</a></li>
+          <li><a href="#">July 2013</a></li>
+          <li><a href="#">June 2013</a></li>
+          <li><a href="#">May 2013</a></li>
+          <li><a href="#">April 2013</a></li>
+        </ol>
+      </div>
+    </aside>
+    <!-- /.blog-sidebar -->
+  </div>
+  <!-- /.row -->
+</main>
+<!-- /.container -->
 
-</html>
+{% endblock content %}
