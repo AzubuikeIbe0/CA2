@@ -46,13 +46,16 @@ class ProdDetail(DetailView):
 
 
 
-def android(request):
-    categorys = Category.objects.all()
-
-    context = {
-        'categorys': categorys,
-    }
-    return render(request, 'shop/android.html', context)
+def subcat(request):
+    category = request.GET.get('category')
+    if category == None:
+        products = Product.objects.all()
+    else:
+        products = Product.objects.filter(category__name=category)
+    
+    categories = Category.objects.all()
+    context = {'categories': categories, 'products': products}
+    return render(request, 'shop/subcat.html', context)
 
 
 

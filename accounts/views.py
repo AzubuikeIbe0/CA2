@@ -15,7 +15,7 @@ class UserEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Profile
     template_name = 'registration/edit_profile.html'
     fields = ['id', 'profile_image', 'dob', 'address', 'phone', 'email']
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('login')
 
     def get_object(self):
         return self.request.user.profile
@@ -26,7 +26,7 @@ class UserEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class ProfilePageView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     model = Profile
     template_name = 'registration/user_profile.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('login')
 
     def get_object(self):
         return self.request.user

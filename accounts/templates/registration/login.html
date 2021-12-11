@@ -6,7 +6,8 @@
 
 <main role="main" class="container-fluid m-5">
   <div class="row">
-    <div class="col-md-7 blog-main mx-5 ">
+    <div class="col-md-7 blog-main px-5 mx-5 ">
+      <div class="card p-5 m-5"> 
         <form method="post">
             {% csrf_token %}
             {{ form|crispy }}
@@ -33,6 +34,7 @@
                 <p>Not a member? <a href="{% url 'signup' %}">Register</a></p>
             </div>
         </form>
+      </div>
     </div>
     <!-- /.blog-main -->
 

@@ -4,8 +4,8 @@
 {% block title %}Shopping Cart{% endblock %}
 {% block content %}
 {% if not cart_items %}
-<section class="mycart">
-	<div>
+<section class="mycart mb-5">
+	<div class="mb-5">
 		<div class="text-center">
 			<br>
 			<h1 class="text-center my_title">
@@ -75,14 +75,18 @@
 					</tr>
 					{% endfor %}
 				</tbody>
+				
 			</table>
-	
+			<div class="mx-auto">
+				<a href="{% url 'shop:allProdCat' %}" class="btn btn-secondary btn-block my_custom_button">Continue
+					Shopping</a>
+			</div>
 		</div>
 		<div class="cart_checkout">
-			<table class="cart_table">
-				<thead class="table_head">
+			<table class="table my_custom_table">
+				<thead class="my_custom_thead">
 					<tr>
-						<th>
+						<th colspan="5">
 							Checkout
 						</th>
 					</tr>
@@ -129,27 +133,29 @@
 					{% endif %}
 				</tbody>
 			</table>
-			<p>Apply a voucher:</p>
-			<form action="{% url 'vouchers:apply' %}" method="post">
-				{{ voucher_apply_form }}
-				<input type="submit" value="Submit">
-				{% csrf_token %}
-			</form>
+			<hr>
+			<p class="my_custom_thead">Apply a voucher</p>
+			<hr>
+				<div class="mb-5">
+					<form action="{% url 'vouchers:apply' %}" method="post">
+						{{ voucher_apply_form }}
+						<input type="submit" value="Submit">
+						{% csrf_token %}
+					</form>
+				</div>
+		
 			<div class="mx-auto">
 				</tbody>
 				</table>
 				<form action="" method="POST">
 					{% csrf_token %}
 					<script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ data_key }}"
-						data-amount="{{ stripe_total }}" data-name="Perfect Cushion Shop"
+						data-amount="{{ stripe_total }}" data-name="The Mobile Phone Shop"
 						data-description="{{ description }}" data-image="{% static 'images/logo.png' %}" data-locale="auto"
 						data-currency="eur" data-shipping-address="true" data-billing-address="true" data-zip-code="true">
 						</script>
 				</form>
-				<div class="mx-auto">
-					<a href="{% url 'shop:allProdCat' %}" class="btn btn-secondary btn-block my_custom_button">Continue
-						Shopping</a>
-				</div>
+				
 			</div>
 		</div>
 	</div>
