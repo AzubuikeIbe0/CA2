@@ -1,4 +1,5 @@
 from django.core import validators
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from vouchers.models import Voucher
 

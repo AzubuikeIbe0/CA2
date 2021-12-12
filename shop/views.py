@@ -19,7 +19,7 @@ class ProdCat(ListView):
             products = Product.objects.all().filter(available=True)
 
         ''' Pagination Code '''
-        paginator = Paginator(products, 6)
+        paginator = Paginator(products, 12)
         try:
             page = int(request.GET.get('page', '1'))
         except:
@@ -43,3 +43,22 @@ class ProdDetail(DetailView):
         except Exception as e:
             raise e
         return render(request, "shop/product.html",{'product':product})
+
+
+
+def subcat(request):
+    category = request.GET.get('category')
+    if category == None:
+        products = Product.objects.all()
+    else:
+        products = Product.objects.filter(category__name=category)
+    
+    categories = Category.objects.all()
+    context = {'categories': categories, 'products': products}
+    return render(request, 'shop/subcat.html', context)
+
+
+
+
+
+
