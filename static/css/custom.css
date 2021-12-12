@@ -96,6 +96,35 @@
                 color: crimson;
             }
 
+            .mobilemenu {
+              display: none;
+            }
+
+
+              /****************************************************MENU TOGGLE*************************************************************/
+                                                         
+              @media (max-width: 768px) {
+
+                .navigation {
+                  display: none;
+                }
+                .mobilemenu {
+                  display:  flex;
+                  flex-direction: row;
+                  justify-content: space-between;
+                  width: 100%;
+                }
+
+                .mobilemenu img,
+                .nav__toggle {
+                  width: 80px;
+                  padding: 10px;
+                  font-size: 36px;
+                }
+
+               
+
+              }
 
   /****************************************************************************************************************
                                                          USER PROFILE
@@ -325,10 +354,28 @@
 }
 
 
+/*Active menu*/
+.active::after{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0.18rem;
+  left: 0;
+  top: 2rem;
+  background-color: var(--first-color);
+}
+
+/*=== Show menu ===*/
+.show{
+  right: 0;
+}
+
+
 /*===========================HOME PAGE=================================*/
 
 .jumbotron {
   margin-top: -11.5rem;
+  background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
 }
 
 .jumrow {
@@ -726,44 +773,36 @@
         height: 100vh;
     }
 
-    .my_custom_table { 
-        min-width: 400px; 
+    .cart_table { 
+        /* min-width: 400px;  */
         font-size: 14px; 
        } 
-       .my_custom_thead { 
+       .cart_thead { 
         font-weight: normal; 
         text-transform: uppercase; 
         letter-spacing: .2em; 
         background-color: #f8f9fa!important; 
        } 
-       .custom_image { 
+       .cart_image { 
         width: 20%; 
         height: 20%;
        } 
-       .custom_a { 
+       .cart_a { 
         text-decoration: none; 
        } 
-       .custom_icon { 
+       .cart_icon { 
         text-decoration: none; 
         color: #868e96 !important; 
        } 
-       .my_custom_button { 
+       .cart_button { 
         margin-top: 5px; 
        }
 
     .cart_checkout .table_head {
-        /* background-color: #ffffff; */
         margin-bottom: 20px; 
    }
 
-  /*  .base_row {
-        width: 80%;
-        margin: auto;
-   } */
 
-   section .mycart {
-       height: 100vh;
-   }
 
 
    .cart_main_row {
@@ -1034,7 +1073,17 @@ footer {
     margin-bottom: 0;
     background-color: #fff;
   }
-  @media (min-width: 768px) {
+
+/*   @media screen and (max-width: 768px) {
+
+    .nav_container {
+      padding: 0;
+    }
+  } */
+
+  @media screen and (min-width: 768px) {
+
+  
     .jumbotron {
       padding-top: 6rem;
       padding-bottom: 6rem;
@@ -1128,9 +1177,18 @@ footer {
 
 
    
+@media screen and (max-width: 560px) {
+
+  .table td, .table th {
+    padding: 5px 0;
+  }
 
 
+  .cart_table {
+    font-size: 12px;
+  }
 
+}
 
 
 
