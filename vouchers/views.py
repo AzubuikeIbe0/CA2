@@ -10,7 +10,7 @@ def voucher_apply(request):
     now = timezone.now()
     form = VoucherApplyForm(request.POST)
     if form.is_valid():
-        code = form.cleanded_data['code']
+        code = form.cleaned_data['code']
         try:
             voucher = Voucher.objects.get(code__iexact=code, valid_from__lte=now, valid_to__gte=now, active=True)
             request.session['voucher_id'] = voucher.id

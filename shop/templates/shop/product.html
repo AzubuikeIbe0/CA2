@@ -11,80 +11,78 @@
 {% endblock %}
 {% block content %}
 <div class="container">
-    <div class="breadcrumbs mb-5">
-      <p><a href="{% url 'shop:allProdCat' %}">Shop</a><span>/</span>
-        <a href="{{ product.category.get_url }}">{{product.category}}</a><span>/</span>{{product.name}}
-      </p>
-    </div>
+  <div class="breadcrumbs mb-5">
+    <p><a href="{% url 'shop:allProdCat' %}">Shop</a><span>/</span>
+      <a href="{{ product.category.get_url }}">{{product.category}}</a><span>/</span>{{product.name}}
+    </p>
+  </div>
 
-    <div class="row">
-      <div class="col-md-8">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="product_image">
-              <img id="xzoom" src="{{product.image.url}}" alt="{{product.name}}">
-              <div class="discount bg-danger">
-                <h1>{{product.voucher.discount}}<span>%</span></h1>
-              </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="product_image">
+            <img id="xzoom" src="{{product.image.url}}" alt="{{product.name}}">
+            <div class="discount bg-danger">
+              <h1>{{product.voucher.discount}}<span>%</span></h1>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="product_desc">
-              <small class="product_category">{{product.category}}</small>
-              <h1 class="product_name">{{product.name}}</h1>
-              <hr>
-              
-              <p>€{{product.price}}</p>
-              <div class="btn-group  mt-2">
-                <a href="{{ product.category.get_url }}" type="button"
-                  class=" btn-sm btn-outline-secondary">{{product.stock}}</a>
-                <a href="{{ product.category.get_url }}" type="button"
-                  class=" btn-sm btn-outline-secondary">{{product.name}}</a>
-                <a href="{{ product.category.get_url }}" type="button" class=" btn-sm btn-outline-secondary">In Stock</a>
-              </div>
-              <hr>
-              <p class="my_title">Product Description</p>
-              <p class="text-justify my_prod_text">{{product.description}}</p>
-              <div class="mx-auto mb-3">
-                <a href="{% url 'shop:allProdCat' %}" class="btn btn-primary btn-block text-white">Continue
-                  Shopping</a>
-              </div>
-    
-              <button type="submit" class="stripe-button-el bg-warning mb-3" style="visibility: visible;"><a
-                  href="https://checkout.stripe.com/checkout.js"></a><span style="display: block; min-height: 30px;">
-                  Checkout with Stripe</span></button>
-    
-              <button type="submit" class="bg-danger paypal_button" style="visibility: visible;"><span
-                  style="display: block; min-height: 30px;">Checkout with PayPal</span></button>
-    
+        </div>
+        <div class="col-md-6">
+          <div class="product_desc">
+            <small class="product_category">{{product.category}}</small>
+            <h1 class="product_name">{{product.name}}</h1>
+            <hr>
+
+            <p>€{{product.price}}</p>
+            <div class="btn-group  mt-2">
+              <a href="{{ product.category.get_url }}" type="button"
+                class=" btn-sm btn-outline-secondary">{{product.stock}}</a>
+              <a href="{{ product.category.get_url }}" type="button"
+                class=" btn-sm btn-outline-secondary">{{product.name}}</a>
+              <a href="{{ product.category.get_url }}" type="button" class=" btn-sm btn-outline-secondary">In Stock</a>
             </div>
+            <hr>
+            <p class="my_title">Product Description</p>
+            <p class="text-justify my_prod_text">{{product.description}}</p>
+            <div class="mx-auto mb-3">
+              <a href="{% url 'shop:allProdCat' %}" class="btn btn-primary btn-block text-white">Continue
+                Shopping</a>
+            </div>
+
+            <a class="btn btn-primary btn-block text-white" href="{% url 'cart:add_cart' product.id %} ">Add to Cart</a>
+            <a class="btn btn-primary btn-block text-white" href="{% url 'accounts:user_wishlist' product.id %} ">Add to Wishlist</a>
+
+
+
           </div>
-          <div class="col-md-12">
-            <h2 class="mt-4">Two columns</h2>
-            <p>Get two columns <strong>starting at desktops and scaling to large desktops</strong>.</p>
-            <div class="tab my-5">
-      
-              <ul class="nav nav-tabs  nav-justified my-5" id="ex1" role="tablist">
-                <li class="active nav-item" role="presentation"><a class="active nav-link" data-toggle="tab" role="tab"
+        </div>
+        <div class="col-md-12">
+          <h2 class="mt-4">Two columns</h2>
+          <p>Get two columns <strong>starting at desktops and scaling to large desktops</strong>.</p>
+          <div class="tab my-5">
+
+            <ul class="nav nav-tabs  nav-justified my-5" id="ex1" role="tablist">
+              <li class="active nav-item" role="presentation"><a class="active nav-link" data-toggle="tab" role="tab"
                   aria-controls="ex3-tabs-2" aria-selected="true" href="#comments">Product Comments</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" id="ex3-tab-2" data-toggle="tab" role="tab"
+              <li class="nav-item" role="presentation"><a class="nav-link" id="ex3-tab-2" data-toggle="tab" role="tab"
                   aria-controls="ex3-tabs-2" aria-selected="false" href="#reviews">Product Reviews</a></li>
-                <!-- <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+              <!-- <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
                 <li><a data-toggle="tab" href="#menu3">Menu 3</a></li> -->
-              </ul>
-            
-              <div class="tab-content">
-                <div id="comments" class="tab-pane fade-in active">
-                  <div class="tab-pane ">
-                    <p>
-                      {% get_comment_count for product as comment_count %}
-                      <h3 class="color-danger">This product has <span> {{ comment_count }} </span>comments.</h3>
-                    </p>
-        
-                    
-                    <p>
-                      {% get_comment_list for product as comment_list %}
-                      {% for comment in comment_list %}
+            </ul>
+
+            <div class="tab-content">
+              <div id="comments" class="tab-pane fade-in active">
+                <div class="tab-pane ">
+                  <p>
+                    {% get_comment_count for product as comment_count %}
+                    <h3 class="color-danger">This product has <span> {{ comment_count }} </span>comments.</h3>
+                  </p>
+
+
+                  <p>
+                    {% get_comment_list for product as comment_list %}
+                    {% for comment in comment_list %}
                     <div class="card p-4 my-3 bg-light rounded">
                       <div class="comments" style="padding: 10px;">
                         <p class="font-weight-bold">
@@ -96,9 +94,9 @@
                         {{ comment.comment | linebreaks }}
                       </div>
                     </div>
-        
+
                     {% endfor %}
-              
+
                     <div class="card-body">
                       {% get_comment_form for product as form %}
                       {% if new_comment %}
@@ -117,108 +115,103 @@
                             class="btn btn-outline-secondary  btn-lg col-md-5 mb-3">Preview</button>
                         </div>
                         <input type="hidden" name="next" value="{% url 'shop:allProdCat' %}" />
-        
+
                       </form>
                       {% endif %}
                     </div>
-                    </p>
-                  </div>
+                  </p>
                 </div>
-                <div id="reviews" class="tab-pane fade">
-                  <h3>Review this product</h3>
-                  <hr>
-                  <p>{% ratings product %}</p>
-        
-                  <p>{{rating}}</p>
-                  
-                
-                  
-                </div>
-              
               </div>
-        
-        
-              
+              <div id="reviews" class="tab-pane fade">
+                <h3>Review this product</h3>
+                <hr>
+                <p>{% ratings product %}</p>
+
+                <p>{{rating}}</p>
+
+
+
+              </div>
+
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 themed-grid-col">
-        <div class="p-2 m-2">
-          <form class="d-flex" action="{% url 'search_app:searchResult' %}" method="get">
-            <input
-              type="search"
-              class="form-control"
-              me-2
-              placeholder="Search Products"
-              aria-label="Search"
-              name="q"
-            />
-            <button class="btnSearch btn-primary px-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i>
-            </button>
-          </form>
-        </div>
-        <div class="card p-2 m-2">
-          <h4 class="text-center my_title">About</h4>
-          <p class="p-3">Saw you downtown singing the Blues. Watch you circle the drain. Why don't you let me stop by?
-            Heavy is the head that <em>wears the crown</em>. Yes, we make angels cry, raining down on earth from up above.
-          </p>
-        </div>
-  
-        <div class="card p-2 m-2">
-          <a href="{{ product.category.get_url }}" type="button" class="btn stripe-button-el bg-light mb-3">Only
-            <span>{{product.stock}}</span> left in stock</a>
-          {% if product.stock == 0%}
-          <p class="tex-justify my_prod_text"><b>Out of Stock</b></p>
-          {% else %}
-          <a class="btn bg-danger paypal_button" href="{% url 'cart:add_cart' product.id %} ">Add to Cart</a>
-          {% endif %}
-        </div>
-  
-        <div class="card p-2 m-2">
-          <div class="method">
-            <div class="image">
-              <img src="https://img.icons8.com/ios/100/000000/in-transit.png" />
-            </div>
-            <div class="text">
-              <p>
-                UPS Standard to Austria 3 working days at € 8.80/case
-                Free shipping on orders over €200
-              </p>
-            </div>
-          </div>
-          <div class="method">
-            <div class="image">
-              <img src="https://img.icons8.com/color/96/000000/ups-airlines.png" />
-            </div>
-            <div class="text">
-              <p> UPS Express Shipping option available at the checkout
-              </p>
-            </div>
-          </div>
-          <div class="method">
-            <div class="image">
-              <img
-                src="https://img.icons8.com/external-outline-satawat-anukul/64/000000/external-air-travel-outline-satawat-anukul-2.png" />
-            </div>
-            <div class="text">
-              <p>
-                New Customers, enter NEWCUST8J to get €10 off with the minimum wine order of €100
-              </p>
-            </div>
-          </div>
-          <div class="method">
-            <div class="image">
-              <img src="https://img.icons8.com/ios/100/000000/gift.png" />
-            </div>
-            <div class="text">
-              <p>Add gift options at the checkout
-              </p>
-            </div>
+
+
+
           </div>
         </div>
       </div>
     </div>
+    <div class="col-md-4 themed-grid-col">
+      <div class="p-2 m-2">
+        <form class="d-flex" action="{% url 'search_app:searchResult' %}" method="get">
+          <input type="search" class="form-control" me-2 placeholder="Search Products" aria-label="Search" name="q" />
+          <button class="btnSearch btn-primary px-2 my-sm-0" type="submit"><i class="fa fa-search"
+              aria-hidden="true"></i>
+          </button>
+        </form>
+      </div>
+      <div class="card p-2 m-2">
+        <h4 class="text-center my_title">About</h4>
+        <p class="p-3">Saw you downtown singing the Blues. Watch you circle the drain. Why don't you let me stop by?
+          Heavy is the head that <em>wears the crown</em>. Yes, we make angels cry, raining down on earth from up above.
+        </p>
+      </div>
+
+      <div class="card p-2 m-2">
+        <a href="{{ product.category.get_url }}" type="button" class="btn stripe-button-el bg-light mb-3">Only
+
+          {% if product.stock == 0%}
+          <p class="tex-justify my_prod_text"><b>Out of Stock</b></p>
+          {% else %}
+          <span>{{product.stock}}</span> left in stock
+        </a>
+        {% endif %}
+      </div>
+
+      <div class="card p-2 m-2">
+        <div class="method">
+          <div class="image">
+            <img src="https://img.icons8.com/ios/100/000000/in-transit.png" />
+          </div>
+          <div class="text">
+            <p>
+              UPS Standard to Austria 3 working days at € 8.80/case
+              Free shipping on orders over €200
+            </p>
+          </div>
+        </div>
+        <div class="method">
+          <div class="image">
+            <img src="https://img.icons8.com/color/96/000000/ups-airlines.png" />
+          </div>
+          <div class="text">
+            <p> UPS Express Shipping option available at the checkout
+            </p>
+          </div>
+        </div>
+        <div class="method">
+          <div class="image">
+            <img
+              src="https://img.icons8.com/external-outline-satawat-anukul/64/000000/external-air-travel-outline-satawat-anukul-2.png" />
+          </div>
+          <div class="text">
+            <p>
+              New Customers, enter NEWCUST8J to get €10 off with the minimum wine order of €100
+            </p>
+          </div>
+        </div>
+        <div class="method">
+          <div class="image">
+            <img src="https://img.icons8.com/ios/100/000000/gift.png" />
+          </div>
+          <div class="text">
+            <p>Add gift options at the checkout
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 {% endblock content %}

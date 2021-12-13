@@ -24,3 +24,14 @@ class orderDetail(LoginRequiredMixin, View):
             order_items = OrderItem.objects.filter(order=order)
 
         return render(request, 'order/order_detail.html', {'order': order, 'order_items': order_items})
+
+
+
+def payment_confirmation(data):
+    Order.objects.filter(order_key=data).update(billing_status=True)
+
+
+def user_orders(request):
+    id = request.user.id
+    orders = Order.objects.filter(id=id).filter(billing_status=True)
+    return orders

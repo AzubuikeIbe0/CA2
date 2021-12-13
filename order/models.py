@@ -1,5 +1,4 @@
 from django.core import validators
-from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from vouchers.models import Voucher
 
@@ -21,6 +20,7 @@ class Order(models.Model):
     shippingCountry = models.CharField(max_length=200, blank=True) 
     Voucher = models.ForeignKey(Voucher, related_name='orders', null=True, blank=True, on_delete=models.SET_NULL)
     discount = models.IntegerField(default=0, validators=[validators.MinValueValidator(0), validators.MaxValueValidator(100)])
+    billing_status = models.BooleanField(default=False)
  
     class Meta: 
         db_table = 'Order' 

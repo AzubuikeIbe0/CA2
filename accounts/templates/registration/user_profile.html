@@ -9,7 +9,12 @@
     
   <div class="row m-5">  
     <div class="col-md-6 blog-main mtop">
-          
+        
+
+
+
+
+
             <div class="top-container">
                 <div class="p-image"><img src= "{{ user.profile.profile_image.url }}"/></div>
                 <div class="ml-3">
@@ -46,7 +51,7 @@
 
             
             <div class="recent-border mt-4"> <span class="recent-orders"></span> </div>
-             <a href="{% url 'edit_profile' user.profile.pk %}" class="btn btn-primary">Edit Profile</a>
+             <a href="{% url 'accounts:edit_profile' user.profile.pk %}" class="btn btn-primary">Edit Profile</a>
 
            
      
