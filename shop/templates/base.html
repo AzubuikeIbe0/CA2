@@ -86,7 +86,7 @@
       <div class="nav_container">
         <div class="left">
           <img src="{% static './images/log.png' %}" alt="Phone Shop">
-          <span><a href="{% url 'home' %}" class="nav-link">Home</a></span>
+          <span><a href="{% url 'pages:home' %}" class="nav-link">Home</a></span>
           <span><a href="{% url 'shop:allProdCat' %}" class="nav-link">Shop</a></span>
           <span><a href="/1/" class="nav-link">Ios</a></span>
           <span><a href="/2/" class="nav-link">Android</a></span> 
@@ -94,32 +94,41 @@
           <span><a href="/3/" class="nav-link">Windows</span>
         </div>
         <div class="right">
+          <a href="{% url 'cart:cart_detail' %}">
           <div class="navbadge">
-            <a href="{% url 'cart:cart_detail' %}">
-              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            
+            <img src="{% static './images/shopping-bag.png' %}" alt="Phone Shop">
               <span class="noti">{{item_count}}</span>
-            </a>
+            
           </div>
-          <!--  <span>KIDS</span> -->
-          <i class="fa fa-binoculars" aria-hidden="true"></i>
+        </a>
+
+          	<a href="{% url 'order:order_history' %}">
+              <div class="navbadge">
+                <img src="{% static './images/heart.png' %}" alt="Phone Shop">
+                <span class="noti">{{orderitem.item_count}}</span>
+              </div>
+           </a>
+          
 
           <div class="profile">
             {% if user.is_authenticated %}
             <img src="{{ user.profile.profile_image.url }}" alt="Profile picture">
             {% else %}
-            <img src="{% static './images/Profile-Photo.jpg' %}" alt="Profile picture">
+            <img src="{% static './images/user.png' %}" alt="Profile picture">
             {% endif %}
             <ArrowDropDown class="icon" />
             <div class="options">
               {% if user.is_authenticated %}
-              <span><a href="{% url 'show_profile' user.profile.pk %}" class="dropdown-item">View Profile</a></span>
-              <span><a href="{% url 'edit_profile' user.profile.pk %}" class="dropdown-item">Edit Profile</a></span>
-              <span><a href="{% url 'order:order_history' %}" class="dropdown-item">Orders</a></span>
+              <span><a href="{% url 'accounts:dashboard' %}" class="dropdown-item">Dashboard</a></span>
+              <span><a href="{% url 'accounts:show_profile' user.profile.pk %}" class="dropdown-item">View Profile</a></span>
+              <span><a href="{% url 'accounts:edit_profile' user.profile.pk %}" class="dropdown-item">Edit Profile</a></span>
+              <span><a href="{% url 'order:order_history' %}" class="dropdown-item">View Orders</a></span>
               <span><a href="{% url 'password_change'%}" class="dropdown-item">Change Password</a></span>
               <span><a href="{% url 'logout' %}" class="dropdown-item">Logout</a></span>
               {% else %}
-              <span><a href="{% url 'login' %}" class="dropdown-item">Login</a></span>
-              <span><a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a></span>
+              <span><a href="{% url 'accounts:signin' %}" class="dropdown-item">Login</a></span>
+              <span><a href="{% url 'accounts:signup' %}" class="dropdown-item">Sign Up</a></span>
               {% endif %}
             </div>
           </div>
@@ -209,13 +218,21 @@
         <div class="col-6 col-md">
           <h5>Categories</h5>
           <ul class="list-unstyled text-small">
-            {% for category in categories %}
+
             <li>
-              <a class="text-muted">{{category.name}}</a>
+              <a href="/1/" class="text-muted">Ios</a>
             </li>
-            {% endfor %}
+
             <li>
-              <a class="text-muted">All Categories</a>
+              <a href="/2/" class="text-muted">Android</a>
+            </li>
+
+            <li>
+              <a href="/3/" class="text-muted">Windows</a>
+            </li>
+
+            <li>
+              <a href="/4/" class="text-muted">Classic</a>
             </li>
 
           </ul>
