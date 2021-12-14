@@ -1,5 +1,4 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.core.checks import messages
 from django.http.response import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DetailView
@@ -14,9 +13,7 @@ from .models import Profile
 
 from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm
-from .models import CustomUser
 from django.urls import reverse_lazy
-from django.contrib.auth.models import Group
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 
@@ -31,7 +28,13 @@ def dashboard(request):
 @login_required
 def wishlist(request):
     products = Product.objects.filter(users_wishlist=request.user)
-    return render(request, "registration/wishlist.html", {"wishlist": products})
+    wishlist_count = Product.objects.count()
+    context = { 
+        'wishlist_count': wishlist_count,
+        'wishlist': products
+        }
+    return render(request, "registration/wishlist.html", context)
+    
 
 
 @login_required
@@ -77,7 +80,7 @@ def SigninView(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('pages:home')
+                return redirect('shop:allProdCat')
             else:
                 return redirect('signup')
     else:

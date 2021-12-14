@@ -103,10 +103,10 @@
           </div>
         </a>
 
-          	<a href="{% url 'order:order_history' %}">
+          	<a href="{% url 'accounts:wishlist' %}">
               <div class="navbadge">
                 <img src="{% static './images/heart.png' %}" alt="Phone Shop">
-                <span class="noti">{{orderitem.item_count}}</span>
+                <span class="noti">{{wishlist_count}}</span>
               </div>
            </a>
           
@@ -121,10 +121,6 @@
             <div class="options">
               {% if user.is_authenticated %}
               <span><a href="{% url 'accounts:dashboard' %}" class="dropdown-item">Dashboard</a></span>
-              <span><a href="{% url 'accounts:show_profile' user.profile.pk %}" class="dropdown-item">View Profile</a></span>
-              <span><a href="{% url 'accounts:edit_profile' user.profile.pk %}" class="dropdown-item">Edit Profile</a></span>
-              <span><a href="{% url 'order:order_history' %}" class="dropdown-item">View Orders</a></span>
-              <span><a href="{% url 'password_change'%}" class="dropdown-item">Change Password</a></span>
               <span><a href="{% url 'logout' %}" class="dropdown-item">Logout</a></span>
               {% else %}
               <span><a href="{% url 'accounts:signin' %}" class="dropdown-item">Login</a></span>
@@ -293,7 +289,13 @@
   <script>
     magnify("xzoom", 3);
   </script>
+   <script>
+     document.getElementById("liked").onclick = function() {addedToList()};
 
+      function addedToList() {
+        alert("Product has been added to your wishlist 👀✨😍🔥!");
+      }
+   </script>
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
