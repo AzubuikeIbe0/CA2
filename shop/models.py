@@ -55,7 +55,7 @@ class Product(models.Model):
     created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     updated = models.DateTimeField(auto_now=True, blank=True, null=True)
     users_wishlist = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='user_wishlist', blank=True )
-    order = models.ForeignKey(Order, related_name='order_history', default=1, blank=True, on_delete=models.CASCADE)
+    #order = models.ForeignKey(Order, related_name='order_history', default=1, blank=True, on_delete=models.CASCADE)
     
     class Meta:
         ordering = ('name',)

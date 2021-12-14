@@ -61,6 +61,7 @@
         background-color: #007bff;
         color: #fff;
     }
+    
 
 
             .sticky .right .fa,
@@ -287,9 +288,23 @@
               justify-content: center;
               align-items: center;
             }
+
     .dash img {
       width: 150px;
     }  
+
+    .dashcol .card {
+      width: 300px;
+      align-content: center;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      margin: 20px;
+    }
+
+    .dasheight {
+      height: 100vh;
+    }
     
     .dash_link h1,
     .dash_link p,
@@ -910,9 +925,13 @@
 
 /****Category page****/ 
 .my_image { 
-    width: 100%; 
-    height: auto; 
+  width: 50%;
+  height: auto;
    } 
+
+   div .my_image {
+    margin-bottom: 40px;
+   }
    .my_title { 
     font-size: 16px; 
     text-transform: uppercase; 
