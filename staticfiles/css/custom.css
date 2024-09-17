@@ -27,14 +27,15 @@
         margin-bottom: 160px;
     }
 
-   .navbar {
-    width: 100%;
-    position: fixed;
-    top: 0;  
-    padding: 0 50px;
-    z-index: 1;
-    background: linear-gradient(to top, transparent 0%, rgb(0, 0, 0, 0.3) 50%);
-   }  
+    .navbar {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      padding: 0 50px;
+      z-index: 1;
+      background: #00bd40;
+      color: white !important;
+    }
    
    .navbar a {
     color: #070000;
