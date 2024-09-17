@@ -22,7 +22,11 @@
           <div class="row col-md-8 blog-main mtop">
               
               <div class="dashcol">
-                <a href="{% url 'accounts:show_profile' user.profile.pk %}" role="button" style="max-width: 540px;">
+                {% if user.profile %}
+                <a href="{% url 'accounts:userpage' %}" role="button" style="max-width: 540px;">
+                  {% else %}
+                <a href="{% url 'accounts:edit_profile' %}" role="button" style="max-width: 540px;">
+                {% endif %}
                   <div class="card mb-3">
                     <div class="row g-0">
                       <div class="col-3 dash m-2">
@@ -37,6 +41,7 @@
                     </div>
                   </div>
                 </a>
+                
               </div>
               <div class="dashcol">
                 <a href="{% url 'accounts:wishlist' %}" role="button" style="max-width: 540px;">

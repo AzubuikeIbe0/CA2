@@ -12,13 +12,14 @@ from order.models import Order
 
 from vouchers.models import Voucher
 
+
 class Category(models.Model):
     id = models.IntegerField(
         primary_key=True,
         default=1,
         editable=False
     )
-    name = models.CharField(default = None, max_length=250, unique=True)
+    name = models.CharField(default=None, max_length=250, unique=True)
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to='category', blank=True)
 
@@ -26,15 +27,12 @@ class Category(models.Model):
         ordering = ('name',)
         verbose_name = 'category'
         verbose_name_plural = 'categories'
-        
+
     def get_absolute_url(self):
         return reverse('shop:product_by_category', args=[self.id])
 
     def __str__(self):
         return self.name
-
-  
-
 
 
 class Product(models.Model):
@@ -43,8 +41,8 @@ class Product(models.Model):
         default=1,
         editable=False
     )
-    
-    name = models.TextField(max_length=25,unique=True)
+
+    name = models.TextField(max_length=25, unique=True)
     description = models.TextField(blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -54,19 +52,17 @@ class Product(models.Model):
     available = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     updated = models.DateTimeField(auto_now=True, blank=True, null=True)
-    users_wishlist = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='user_wishlist', blank=True )
+    users_wishlist = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, related_name='user_wishlist', blank=True)
     #order = models.ForeignKey(Order, related_name='order_history', default=1, blank=True, on_delete=models.CASCADE)
-    
+
     class Meta:
         ordering = ('name',)
         verbose_name = 'product'
         verbose_name_plural = 'products'
-        
+
     def get_absolute_url(self):
         return reverse('shop:prod_detail', args=[self.category.id, self.id])
-         
 
     def __str__(self):
         return self.name
-
-

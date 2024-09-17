@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -27,7 +26,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,17 +36,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'accounts',
-    'shop',
-    'search_app',
-    'cart',
+    'accounts.apps.AccountsConfig',
+    'shop.apps.ShopConfig',
+    'search_app.apps.SearchAppConfig',
+    'cart.apps.CartConfig',
     'stripe',
-    'order',
-    'vouchers',
-    'pages',
+    'order.apps.OrderConfig',
+    'vouchers.apps.VouchersConfig',
+    'pages.apps.PagesConfig',
     'django_comments',
     'star_ratings',
-    #3rd party
+    # 3rd party
     'crispy_forms',
 ]
 
@@ -67,11 +65,11 @@ ROOT_URLCONF = 'phone_shop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [str(BASE_DIR.joinpath('shop','templates')),
-                 str(BASE_DIR.joinpath('home','templates')),
-                 str(BASE_DIR.joinpath('search_app','templates')),
-                 str(BASE_DIR.joinpath('cart','templates')),
-                 str(BASE_DIR.joinpath('accounts','templates'))],
+        'DIRS': [str(BASE_DIR.joinpath('shop', 'templates')),
+                 str(BASE_DIR.joinpath('home', 'templates')),
+                 str(BASE_DIR.joinpath('search_app', 'templates')),
+                 str(BASE_DIR.joinpath('cart', 'templates')),
+                 str(BASE_DIR.joinpath('accounts', 'templates'))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -88,7 +86,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'phone_shop.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -98,7 +95,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -118,7 +114,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -131,7 +126,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -147,29 +141,27 @@ STATICFILES_FINDERS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = str(BASE_DIR.joinpath('media'))
 
-
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL ='accounts.CustomUser'
+# AUTH_USER_MODEL = 'accounts.CustomUser'
 
-
-#CRISPY_TEMPLATE_PACK = 'uni_form'
-#CRISPY_TEMPLATE_PACK = 'bootstrap5'
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
+# CRISPY_TEMPLATE_PACK = 'uniform'
+# CRISPY_TEMPLATE_PACK = 'bootstrap5'
+# CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
-SITE_ID=1
-
+SITE_ID = 1
 
 # blo_project/setting.py
 LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'home' # new
+LOGOUT_REDIRECT_URL = 'home'  # new
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 
 STRIPE_SECRET_KEY = 'sk_test_51JzRHWKUdvuCxoHFxpmAS5Z43ylvcDc48M0Z0LA0JdYONfL64JvcKBvR2JRCzX27f2DjhJdIwUliWk8ixFonBUMp00gK9mbWqT'
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51JzRHWKUdvuCxoHF5kS7Uo1XoiUzTLnSNmrB91lornvAKdNb2lXFEzRAxss7HgFjyFkR2MrQAt7k1Amrl3F0ic2v00HE5UCsYK'

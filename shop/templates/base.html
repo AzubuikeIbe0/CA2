@@ -12,10 +12,17 @@
     integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
-  <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
-<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
-  <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <!--========== BOX ICONS ==========-->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     
+    <!--========== FONTAWESOME ==========-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" />
+    <!--========== BOOTSTRAP CDN ==========-->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    
+    <!--========== CSS ==========-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.scss' %}">
   <title>{% block title %}{% endblock %}</title>
   <script>
     function magnify(imgID, zoom) {
@@ -85,7 +92,8 @@
     <nav class="navbar">
       <div class="nav_container">
         <div class="left">
-          <img src="{% static './images/log.png' %}" alt="Phone Shop">
+          
+          <a href="{% url 'pages:home' %}" class="nav-link"><img src="{% static './images/log.png' %}" alt="Phone Shop"></a>
           <span><a href="{% url 'pages:home' %}" class="nav-link">Home</a></span>
           <span><a href="{% url 'shop:allProdCat' %}" class="nav-link">Shop</a></span>
           <span><a href="/1/" class="nav-link">Ios</a></span>
@@ -105,7 +113,7 @@
 
           	<a href="{% url 'accounts:wishlist' %}">
               <div class="navbadge">
-                <img src="{% static './images/heart.png' %}" alt="Phone Shop">
+                <img src="{% static './images/heart.png' %}" alt="your wishlist">
                 <span class="noti">{{wishlist_count}}</span>
               </div>
            </a>
@@ -113,20 +121,30 @@
 
           <div class="profile">
             {% if user.is_authenticated %}
-            <img src="{{ user.profile.profile_image.url }}" alt="Profile picture">
-            {% else %}
-            <img src="{% static './images/user.png' %}" alt="Profile picture">
-            {% endif %}
+              
+                {% if user.profile.profile_image %}  
+                <img src="{{ user.profile.profile_image.url }}" alt="Profile picture">
+                {% else %}
+                <img src="{% static './images/user.png' %}" alt="Profile picture">
+                {% endif %}
+              
             <ArrowDropDown class="icon" />
             <div class="options">
-              {% if user.is_authenticated %}
+              
               <span><a href="{% url 'accounts:dashboard' %}" class="dropdown-item">Dashboard</a></span>
+              <span>
+              <a class="navbar-item" href="{% url 'accounts:edit_profile' user.id %}">Edit Profile</a></span>
+              
               <span><a href="{% url 'logout' %}" class="dropdown-item">Logout</a></span>
-              {% else %}
+            </div>
+            {% else %}
+            <img src="{% static './images/user.png' %}" alt="Profile picture">
+            <ArrowDropDown class="icon" />
+            <div class="options">
               <span><a href="{% url 'accounts:signin' %}" class="dropdown-item">Login</a></span>
               <span><a href="{% url 'accounts:signup' %}" class="dropdown-item">Sign Up</a></span>
-              {% endif %}
             </div>
+            {% endif %}
           </div>
           
           
@@ -296,6 +314,14 @@
         alert("Product has been added to your wishlist 👀✨😍🔥!");
       }
    </script>
+
+<script>
+  document.getElementById("loved").onclick = function() {addedToCart()};
+
+   function addedToCart() {
+     alert("Product has been added to your Shopping Cart 💕❤🔥!");
+   }
+</script>
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>

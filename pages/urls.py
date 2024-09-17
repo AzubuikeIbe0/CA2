@@ -1,8 +1,8 @@
-from django.urls import path
+from django.urls import include, path
 from .views import HomePageView
 
 
-app_name = 'pages' 
+app_name = 'pages'
 
 
 urlpatterns = [

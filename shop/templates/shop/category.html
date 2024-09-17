@@ -62,7 +62,7 @@
 											<div class="icons_card">
 												{% if user.is_authenticated %}
 												<div class="ficon" id="">
-													<a class="#" href="{% url 'cart:add_cart' product.id %} "><i class="fas fa-shopping-bag"></i></a>
+													<a id="loved" onclick="addedToCart();"  href="{% url 'cart:add_cart' product.id %}"><i class="fas fa-shopping-bag"></i></a>
 												</div>
 												<div class="licon" id="">
 													<a id="liked" onclick="addedToList();" href="{% url 'accounts:user_wishlist' product.id %}"><i class="far fa-heart"></i></a>
