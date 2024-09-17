@@ -2,7 +2,7 @@ altgraph==0.17.3
 anyio==3.6.2
 api-display-purposes==0.0.3
 appdirs==1.4.4
-asgiref==3.7.2
+asgiref==3.8.1
 async-generator==1.10
 attrs==22.2.0
 beautifulsoup4==4.11.1
@@ -16,7 +16,7 @@ colorama==0.4.6
 configparser==3.8.1
 crispy-bootstrap4==2023.1
 distlib==0.3.6
-Django==5.0
+Django==5.1.1
 django-braces==1.15.0
 django-comments==0.3a0
 django-contrib-comments==2.2.0
